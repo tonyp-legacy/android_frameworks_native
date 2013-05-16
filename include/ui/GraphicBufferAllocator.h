@@ -68,11 +68,6 @@ public:
     status_t alloc(uint32_t w, uint32_t h, PixelFormat format, int usage,
             buffer_handle_t* handle, int32_t* stride);
 
-#ifdef QCOM_BSP
-    status_t alloc(uint32_t w, uint32_t h, PixelFormat format, int usage,
-            buffer_handle_t* handle, int32_t* stride, uint32_t bufferSize);
-#endif
-
     status_t free(buffer_handle_t handle);
 
     void dump(String8& res) const;
@@ -92,7 +87,6 @@ private:
     static KeyedVector<buffer_handle_t, alloc_rec_t> sAllocList;
     
     friend class Singleton<GraphicBufferAllocator>;
-    friend class BufferLiberatorThread;
     GraphicBufferAllocator();
     ~GraphicBufferAllocator();
     
